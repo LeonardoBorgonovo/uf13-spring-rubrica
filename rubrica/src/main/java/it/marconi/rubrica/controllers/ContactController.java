@@ -1,10 +1,17 @@
 package it.marconi.rubrica.controllers;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.marconi.rubrica.domain.Contact;
@@ -38,6 +45,22 @@ public class ContactController {
 
         Contact c = contactService.save(contactForm);
 
-        return new ModelAndView("contact-form");
+        //return new ModelAndView("contact-form");
+        return new ModelAndView("redirect:/contact?id=" + c.getId());
+    }
+
+    // pattern PRG
+    @GetMapping(path = "contact", params = "id")
+    public ModelAndView showContact(@RequestParam("id") UUID contactId) {
+
+        Optional<Contact> opContact = contactService.get(contactId);
+
+        // controllo se il dato è presente
+        if (opContact.isPresent()) {
+            return new ModelAndView("contact-detail")
+                .addObject("contact", opContact.get());
+        }
+        else 
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Contatto non trovato");
     }
 }
