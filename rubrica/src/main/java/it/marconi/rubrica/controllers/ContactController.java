@@ -20,7 +20,9 @@ public class ContactController {
 
     @GetMapping
     public ModelAndView showContactList() {
-        return new ModelAndView("contact-list");
+        // passo alla webpage la lista dei contatti letta dal db
+        return new ModelAndView("contact-list")
+            .addObject("contacts", contactService.findAll());
     }
 
     // endpoint per la richiesta GET, mi deve mostrare il form di inserimento

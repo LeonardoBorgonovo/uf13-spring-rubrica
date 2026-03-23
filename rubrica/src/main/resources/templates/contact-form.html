@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <title>Nuovo contatto</title>
 </head>
 <body>
     <div>
-        <a href="">Home</a>
+        <a th:href="@{/}" class="btn btn-primary">Home</a>
     </div>
 
     <div>
@@ -36,10 +37,12 @@
             </div>
 
             <div>
-                <input type="submit" value="Aggiungi"> 
-                <input type="reset" value="Svuota">
+                <input class="btn btn-success" type="submit" value="Aggiungi"> 
+                <input class="btn btn-secondary" type="reset" value="Svuota">
             </div>
         </form>
     </div>
+
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
