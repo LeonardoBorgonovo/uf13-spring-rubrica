@@ -7,61 +7,66 @@
     <title>Nuovo contatto</title>
 </head>
 <body>
-    <div>
-        <a th:href="@{/}" class="btn btn-primary">Home</a>
-    </div>
+    <div class="container d-flex flex-column" style="margin-top: 50px;">
+        <header class="my-2 main-header">
+            <a th:href="@{/}" class="btn btn-primary">Home</a>
+        </header>
 
-    <div class="row justify-content-center">
-        <div class="col-sm-6">
-
-            <!-- form di inserimento dei dati del contatto -->
-                                                <!-- associo l'oggetto ContactForm -->
-            <form method="post" th:action="@{/new}" th:object="${contactForm}">
-                <div class="mb-3">
-                    <label>Nome</label>
-                    <!-- collego il campo all'attributo "name" della classe -->
-                    <input th:field="*{name}" type="text" class="form-control">
-
-                    <!-- feedback della validazione -->
-                    <div th:if="${#fields.hasErrors('name')}">
-                        <span th:errors="*{name}" class="text-danger"></span>
-                    </div>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
     
-                <div class="mb-3">
-                    <label>Cognome</label>
-                    <input th:field="*{surname}" type="text" class="form-control">
-
-                    <div th:if="${#fields.hasErrors('surname')}">
-                        <span th:errors="*{surname}" class="text-danger"></span>
-                    </div>
-                </div>
-    
-                <div class="mb-3">
-                    <label>Telefono</label>
-                    <input th:field="*{phone}" type="tel" class="form-control" pattern="[0-9]{10}">
-
-                    <div th:if="${#fields.hasErrors('phone')}">
-                        <span th:errors="*{phone}" class="text-danger"></span>
-                    </div>
-                </div>
-    
-                <div class="mb-3">
-                    <label>Email</label>
-                    <input th:field="*{email}" type="email" placeholder="email@example.com" class="form-control">
+                <h2 class="mb-4 text-center">Nuovo contatto</h2>
                 
-                    <div th:if="${#fields.hasErrors('email')}">
-                        <span th:errors="*{email}" class="text-danger"></span>
-                    </div>
-                </div>
+                <!-- form di inserimento dei dati del contatto -->
+                                                    <!-- associo l'oggetto ContactForm -->
+                <form method="post" th:action="@{/new}" th:object="${contactForm}">
+                    <div class="mb-3">
+                        <label>Nome</label>
+                        <!-- collego il campo all'attributo "name" della classe -->
+                        <input th:field="*{name}" type="text" class="form-control">
     
-                <div>
-                    <input class="btn btn-success" type="submit" value="Aggiungi"> 
-                    <input class="btn btn-secondary" type="reset" value="Svuota">
-                </div>
-            </form>
+                        <!-- feedback della validazione -->
+                        <div th:if="${#fields.hasErrors('name')}">
+                            <span th:errors="*{name}" class="text-danger"></span>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label>Cognome</label>
+                        <input th:field="*{surname}" type="text" class="form-control">
+    
+                        <div th:if="${#fields.hasErrors('surname')}">
+                            <span th:errors="*{surname}" class="text-danger"></span>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label>Telefono</label>
+                        <input th:field="*{phone}" type="tel" class="form-control" pattern="[0-9]{10}">
+    
+                        <div th:if="${#fields.hasErrors('phone')}">
+                            <span th:errors="*{phone}" class="text-danger"></span>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input th:field="*{email}" type="email" placeholder="email@example.com" class="form-control">
+                    
+                        <div th:if="${#fields.hasErrors('email')}">
+                            <span th:errors="*{email}" class="text-danger"></span>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <input class="btn btn-success" type="submit" value="Aggiungi"> 
+                        <input class="btn btn-secondary" type="reset" value="Svuota">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
 
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </body>

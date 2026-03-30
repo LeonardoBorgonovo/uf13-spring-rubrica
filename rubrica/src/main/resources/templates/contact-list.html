@@ -9,40 +9,42 @@
 <body>
     <h1>Spring Rubrica</h1>
 
-    <div>
-        <a th:href="@{/new}" class="btn btn-primary">Nuovo contatto</a>
+    <div class="container">
+        <div>
+            <a th:href="@{/new}" class="btn btn-primary">Nuovo contatto</a>
+        </div>
+    
+        <header class="my-2">
+            <h2 class="mb-4 text-center">Lista contatti</h2>
+        </header>
+    
+        <div>
+            <table class="table table-dark table-striped table-bordered table-hover">
+                <thead class="table-primary">
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Dettagli</th>
+                </thead>
+                <tbody>
+                    <tr th:each="c : ${contacts}">
+                        <td th:text="${c.name}"></td>
+                        <td th:text="${c.surname}"></td>
+                        <td th:text="${c.phone}"></td>
+                        <td th:text="${c.email}"></td>
+    
+                        <!-- operazioni sui contatti -->
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <p th:if="${#lists.isEmpty(contacts)}"> 
+            Nessun contatto presente
+        </p>
     </div>
-
-    <div>
-        <h2>Lista contatti</h2>
-    </div>
-
-    <div>
-        <table class="table table-dark table-striped table-bordered table-hover">
-            <thead class="table-primary">
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Dettagli</th>
-            </thead>
-            <tbody>
-                <tr th:each="c : ${contacts}">
-                    <td th:text="${c.name}"></td>
-                    <td th:text="${c.surname}"></td>
-                    <td th:text="${c.phone}"></td>
-                    <td th:text="${c.email}"></td>
-
-                    <!-- operazioni sui contatti -->
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <p th:if="${#lists.isEmpty(contacts)}"> 
-        Nessun contatto presente
-    </p>
 
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </body>
